@@ -1,5 +1,5 @@
 import { prisma } from "../../lib/prisma";
-import Navbar from "../components/SellerNav";
+import Navbar from "@/app/components/Navbar";
 
 export default async function MyQuotations() {
 
