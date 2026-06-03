@@ -1,4 +1,5 @@
 import { prisma } from "../../lib/prisma";
+import AdminHeader from "../admin/AdminHeader";
 
 export default async function AdminPage() {
   const orders = await prisma.order.findMany({
@@ -19,7 +20,7 @@ export default async function AdminPage() {
 
   return (
     <main className="min-h-screen p-8">
-      <h1 className="text-4xl font-bold mb-8">Admin Dashboard</h1>
+      <AdminHeader />
 
       {/* Stats Cards */}
       <div className="grid md:grid-cols-2 gap-4 mb-8">
