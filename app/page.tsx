@@ -1,49 +1,30 @@
-import { prisma } from "../lib/prisma";
 import Link from "next/link";
 
-export default async function Home() {
-  const products = await prisma.product.findMany();
-
+export default function Home() {
   return (
-    <main className="min-h-screen p-8">
-      <h1 className="text-4xl font-bold mb-8">
-        Product Catalog
+    <main className="min-h-screen flex flex-col justify-center items-center">
+
+      <h1 className="text-5xl font-bold mb-4">
+        AasaMedChem Inventory System
       </h1>
 
-      <div className="grid md:grid-cols-3 gap-6">
-        {products.map((product) => (
-          <Link
-            key={product.id}
-            href={`/product/${product.id}`}
-          >
-            <div className="border rounded-lg p-5 shadow hover:shadow-lg cursor-pointer">
-              <h2 className="text-xl font-semibold">
-                {product.name}
-              </h2>
+      <p className="text-gray-600 mb-8">
+        Inventory, Quotations and Order Management
+      </p>
 
-              <p className="text-gray-500">
-                {product.description}
-              </p>
+      <Link
+        href="/login"
+        className="
+          bg-black
+          text-white
+          px-6
+          py-3
+          rounded
+        "
+      >
+        Get Started
+      </Link>
 
-              <p className="mt-3">
-                SKU: {product.sku}
-              </p>
-
-              <p>
-                Inventory:{" "}
-                {product.inventory.toString()}{" "}
-                {product.baseUnit}
-              </p>
-
-              <p className="font-bold mt-2">
-                ₹{product.pricePerBaseUnit.toString()}
-                {" / "}
-                {product.baseUnit}
-              </p>
-            </div>
-          </Link>
-        ))}
-      </div>
     </main>
   );
 }
