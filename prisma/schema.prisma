@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Unit {
+  G
+  KG
+  ML
+  L
+  ITEM
+}
+
+enum ProductDimension {
+  WEIGHT
+  VOLUME
+  COUNT
+}
+
+enum OrderStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Product {
+  id String @id @default(cuid())
+
+  name String
+  description String?
+
+  sku String @unique
+
+  dimension ProductDimension
+
+  baseUnit Unit
+
+  inventory Decimal @db.Decimal(30,10)
+
+  pricePerBaseUnit Decimal @db.Decimal(30,10)
+
+  createdAt DateTime @default(now())
+
+  orderItems OrderItem[]
+}
+
+model Order {
+  id String @id @default(cuid())
+
+  customerName String
+
+  status OrderStatus @default(PENDING)
+
+  totalAmount Decimal @db.Decimal(30,10)
+
+  createdAt DateTime @default(now())
+
+  items OrderItem[]
+}
+
+model OrderItem {
+  id String @id @default(cuid())
+
+  orderId String
+
+  productId String
+
+  quantity Decimal @db.Decimal(30,10)
+
+  enteredUnit Unit
+
+  convertedQuantity Decimal @db.Decimal(30,10)
+
+  unitPrice Decimal @db.Decimal(30,10)
+
+  totalPrice Decimal @db.Decimal(30,10)
+
+  order Order @relation(fields: [orderId], references: [id])
+
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model User {
+  id String @id @default(cuid())
+
+  name String
+
+  email String @unique
+
+  role Role
+}
+
+enum Role {
+  ADMIN
+  SELLER
+}
+
+model Quotation {
+  id String @id @default(cuid())
+
+  customerName String
+
+  totalAmount Decimal @db.Decimal(30,10)
+
+  status QuoteStatus @default(PENDING)
+
+  createdAt DateTime @default(now())
+}
+
+enum QuoteStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
