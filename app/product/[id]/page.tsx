@@ -1,4 +1,5 @@
 import { prisma } from "../../../lib/prisma";
+import OrderForm from "./OrderForm";
 
 export default async function ProductPage({
   params,
@@ -32,6 +33,7 @@ export default async function ProductPage({
         ₹
         {product.pricePerBaseUnit.toString()}
       </p>
+      <OrderForm product={product} />
 
     </div>
   );
