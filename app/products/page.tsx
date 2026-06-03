@@ -1,6 +1,6 @@
 import { prisma } from "../../lib/prisma";
 import Link from "next/link";
-import ProductHeader from "@/components/ProductHeader";
+import ProductHeader from "../components/ProductHeader";
 
 export default async function ProductsPage() {
 
