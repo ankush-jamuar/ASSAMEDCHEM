@@ -74,18 +74,6 @@ export default function NewProductPage() {
           onChange={(e) => setPrice(e.target.value)}
         />
 
-        <button
-          onClick={createProduct}
-          className="
-            bg-black
-            text-white
-            px-4
-            py-2
-            rounded
-          "
-        >
-          Create Product
-        </button>
         <select
           value={dimension}
           onChange={(e) => setDimension(e.target.value)}
@@ -114,6 +102,19 @@ export default function NewProductPage() {
           value={inventory}
           onChange={(e) => setInventory(e.target.value)}
         />
+
+        <button
+          onClick={createProduct}
+          className="
+            bg-black
+            text-white
+            px-4
+            py-2
+            rounded
+          "
+        >
+          Create Product
+        </button>
       </div>
     </main>
   );

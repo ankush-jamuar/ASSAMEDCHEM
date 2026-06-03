@@ -13,6 +13,9 @@ export default function AdminNav() {
         Quotations
       </Link>
       <Link href="/admin/products/new">Add Product</Link>
+      <Link href="/admin/inventory" className="border px-4 py-2 rounded">
+        Inventory
+      </Link>
     </div>
   );
 }
