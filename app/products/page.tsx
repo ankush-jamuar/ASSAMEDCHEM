@@ -1,62 +1,63 @@
-"use client";
-
-import { useRouter } from "next/navigation";
 import { prisma } from "../../lib/prisma";
 import Link from "next/link";
+import ProductHeader from "@/components/ProductHeader";
 
-export default async function Home() {
-  const products = await prisma.product.findMany();
+export default async function ProductsPage() {
 
-  const router = useRouter();
-
-  function logout() {
-    localStorage.removeItem("role");
-    router.push("/login");
-  }
+  const products =
+    await prisma.product.findMany();
 
   return (
     <main className="min-h-screen p-8">
-      <h1 className="text-4xl font-bold mb-8">Product Catalog</h1>
-      <div className="flex justify-between mb-6">
-        <h1 className="text-4xl font-bold">Product Catalog</h1>
 
-        <button
-          onClick={logout}
-          className="
-      bg-red-500
-      text-white
-      px-4
-      py-2
-      rounded
-    "
-        >
-          Logout
-        </button>
-      </div>
+      <ProductHeader />
 
       <div className="grid md:grid-cols-3 gap-6">
+
         {products.map((product) => (
-          <Link key={product.id} href={`/product/${product.id}`}>
+
+          <Link
+            key={product.id}
+            href={`/product/${product.id}`}
+          >
+
             <div className="border rounded-lg p-5 shadow hover:shadow-lg cursor-pointer">
-              <h2 className="text-xl font-semibold">{product.name}</h2>
 
-              <p className="text-gray-500">{product.description}</p>
+              <h2 className="text-xl font-semibold">
+                {product.name}
+              </h2>
 
-              <p className="mt-3">SKU: {product.sku}</p>
+              <p className="text-gray-500">
+                {product.description}
+              </p>
+
+              <p className="mt-3">
+                SKU: {product.sku}
+              </p>
 
               <p>
-                Inventory: {product.inventory.toString()} {product.baseUnit}
+                Inventory:
+                {" "}
+                {product.inventory.toString()}
+                {" "}
+                {product.baseUnit}
               </p>
 
               <p className="font-bold mt-2">
-                ₹{product.pricePerBaseUnit.toString()}
+                ₹
+                {product.pricePerBaseUnit.toString()}
                 {" / "}
                 {product.baseUnit}
               </p>
+
             </div>
+
           </Link>
+
         ))}
+
       </div>
+
     </main>
   );
 }
