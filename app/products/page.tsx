@@ -1,6 +1,7 @@
 import { prisma } from "../../lib/prisma";
 import ProductCatalog from "../components/ProductCatalog";
 import Navbar from "../components/Navbar";
+import SellerNav from "../components/SellerNav";
 
 export default async function ProductsPage() {
   const products = await prisma.product.findMany();
@@ -11,6 +12,7 @@ export default async function ProductsPage() {
   role="seller"
   title="Product Catalog"
 />
+<SellerNav />
 
       <ProductCatalog products={JSON.parse(JSON.stringify(products))} />
     </main>
