@@ -21,35 +21,70 @@ export default function OrderForm({ product }: { product: any }) {
     convertedQuantity = quantity * 1000;
   }
 
-  const totalPrice = convertedQuantity * Number(product.pricePerBaseUnit);
+  const totalPrice =
+  convertedQuantity *
+  Number(product.pricePerBaseUnit);
 
-  async function placeOrder() {
-    const response = await fetch("/api/order", {
+async function placeOrder() {
+  const response = await fetch(
+    "/api/order",
+    {
       method: "POST",
 
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type":
+          "application/json",
       },
 
       body: JSON.stringify({
         productId: product.id,
-
         quantity,
-
         enteredUnit: unit,
-
         convertedQuantity,
-
         totalPrice,
         customerName,
         customerEmail,
       }),
-    });
+    }
+  );
 
-    const data = await response.json();
+  const data =
+    await response.json();
 
-    alert(data.success ? "Order Placed" : "Failed");
-  }
+  alert(
+    data.success
+      ? "Order Placed"
+      : "Failed"
+  );
+}
+
+async function requestQuotation() {
+  const response = await fetch(
+    "/api/quotation",
+    {
+      method: "POST",
+
+      headers: {
+        "Content-Type":
+          "application/json",
+      },
+
+      body: JSON.stringify({
+        customerName,
+        totalPrice,
+      }),
+    }
+  );
+
+  const data =
+    await response.json();
+
+  alert(
+    data.success
+      ? "Quotation Requested"
+      : "Failed"
+  );
+}
 
   return (
     <div className="mt-8 border rounded-lg p-6">
@@ -107,6 +142,19 @@ export default function OrderForm({ product }: { product: any }) {
   "
         >
           Place Order
+        </button>
+        <button
+          onClick={requestQuotation}
+          className="
+    border
+    px-4
+    py-2
+    rounded
+    mt-4
+    ml-4
+  "
+        >
+          Request Quotation
         </button>
       </div>
     </div>
