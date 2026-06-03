@@ -115,13 +115,38 @@ async function requestQuotation() {
       <select
         value={unit}
         onChange={(e) => setUnit(e.target.value)}
-        className="border p-2 rounded w-full"
+        className="
+border
+p-2
+rounded
+bg-background
+text-foreground
+"
       >
-        <option value={product.baseUnit}>{product.baseUnit}</option>
+        <option value={product.baseUnit}  className="
+    bg-black
+    text-white
+  ">
+          {product.baseUnit}
+        </option>
 
-        {product.baseUnit === "G" && <option value="KG">KG</option>}
+        {product.baseUnit === "G" && (
+          <option value="KG"  className="
+    bg-black
+    text-white
+  ">
+            KG
+          </option>
+        )}
 
-        {product.baseUnit === "ML" && <option value="L">L</option>}
+        {product.baseUnit === "ML" && (
+          <option value="L"  className="
+    bg-black
+    text-white
+  ">
+            L
+          </option>
+        )}
       </select>
 
       <div className="mt-4 space-y-2">

@@ -1,3 +1,4 @@
+import Navbar from "@/app/components/Navbar";
 import { prisma } from "../../../lib/prisma";
 import OrderForm from "./OrderForm";
 
@@ -19,6 +20,10 @@ export default async function ProductPage({
 
   return (
     <div className="p-8">
+      <Navbar
+  role="seller"
+  title={product.name}
+/>
 
       <h1 className="text-4xl font-bold">
         {product.name}

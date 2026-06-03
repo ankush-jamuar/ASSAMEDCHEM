@@ -1,5 +1,5 @@
 import { prisma } from "../../lib/prisma";
-import AdminHeader from "../admin/AdminHeader";
+import Navbar from "../components/Navbar";
 import AdminNav from "../components/AdminNav";
 
 export default async function AdminPage() {
@@ -21,8 +21,11 @@ export default async function AdminPage() {
 
   return (
     <main className="min-h-screen p-8">
-      <AdminHeader />
-      <AdminNav />
+      <Navbar
+  role="admin"
+  title="Admin Dashboard"
+/>
+<AdminNav/>
 
       {/* Stats Cards */}
       <div className="grid md:grid-cols-2 gap-4 mb-8">

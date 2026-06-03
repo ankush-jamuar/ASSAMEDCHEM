@@ -1,4 +1,6 @@
+import AdminNav from "@/app/components/AdminNav";
 import { prisma } from "../../../lib/prisma";
+import Navbar from "../../components/Navbar";
 
 export default async function InventoryPage() {
 
@@ -7,6 +9,11 @@ export default async function InventoryPage() {
 
   return (
     <main className="p-8">
+        <Navbar
+  role="admin"
+  title="Inventory Management"
+/>
+<AdminNav />
 
       <h1 className="text-4xl font-bold mb-8">
         Inventory

@@ -58,10 +58,12 @@ export default function ProductCatalog({
 
         <select
           className="
-            border
-            p-2
-            rounded
-          "
+border
+p-2
+rounded
+bg-background
+text-foreground
+"
           value={filter}
           onChange={(e) =>
             setFilter(
@@ -69,19 +71,31 @@ export default function ProductCatalog({
             )
           }
         >
-          <option value="ALL">
+          <option value="ALL"  className="
+    bg-black
+    text-white
+  ">
             All
           </option>
 
-          <option value="WEIGHT">
+          <option value="WEIGHT"  className="
+    bg-black
+    text-white
+  ">
             Weight
           </option>
 
-          <option value="VOLUME">
+          <option value="VOLUME"  className="
+    bg-black
+    text-white
+  ">
             Volume
           </option>
 
-          <option value="COUNT">
+          <option value="COUNT"  className="
+    bg-black
+    text-white
+  ">
             Count
           </option>
 

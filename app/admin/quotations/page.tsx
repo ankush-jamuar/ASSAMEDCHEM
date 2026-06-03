@@ -1,4 +1,6 @@
+import Navbar from "@/app/components/Navbar";
 import { prisma } from "../../../lib/prisma";
+import AdminLayout from "../layout";
 import AdminNav from "../../components/AdminNav";
 
 export default async function QuotationsPage() {
@@ -11,7 +13,11 @@ export default async function QuotationsPage() {
 
   return (
     <main className="min-h-screen p-8">
-        <AdminNav />
+      <Navbar
+  role="admin"
+  title="Quotation Management"
+/>
+<AdminNav />
 
       <h1 className="text-4xl font-bold mb-8">
         Quotations
