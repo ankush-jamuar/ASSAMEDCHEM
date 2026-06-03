@@ -7,6 +7,10 @@ export default function OrderForm({ product }: { product: any }) {
 
   const [unit, setUnit] = useState(product.baseUnit);
 
+  const [customerName, setCustomerName] = useState("");
+
+  const [customerEmail, setCustomerEmail] = useState("");
+
   let convertedQuantity = quantity;
 
   if (unit === "KG") {
@@ -37,6 +41,8 @@ export default function OrderForm({ product }: { product: any }) {
         convertedQuantity,
 
         totalPrice,
+        customerName,
+        customerEmail,
       }),
     });
 
@@ -48,7 +54,21 @@ export default function OrderForm({ product }: { product: any }) {
   return (
     <div className="mt-8 border rounded-lg p-6">
       <h2 className="text-2xl font-semibold mb-4">Place Order</h2>
+      <input
+        type="text"
+        placeholder="Customer Name"
+        value={customerName}
+        onChange={(e) => setCustomerName(e.target.value)}
+        className="border p-2 rounded w-full mb-4"
+      />
 
+      <input
+        type="email"
+        placeholder="Customer Email"
+        value={customerEmail}
+        onChange={(e) => setCustomerEmail(e.target.value)}
+        className="border p-2 rounded w-full mb-4"
+      />
       <input
         type="number"
         min="1"
